@@ -1,0 +1,176 @@
+%------------------------
+% Based on "Ethan's Résumé Template"
+% Author: necusjz
+% License: CC-BY-4.0
+%------------------------
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\input{glyphtounicode}
+
+% font options
+\usepackage{newpxtext}
+\linespread{1.0}  % palladio needs more leading (space between lines)
+\usepackage[T1]{fontenc}
+
+\pagestyle{fancy}
+\fancyhf{}  % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.25in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\footskip}{5pt}
+
+% sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule\vspace{-6pt}]
+
+% ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+% custom commands
+\newcommand{\cvitem}[1]{
+  \item\small{
+    {#1\vspace{-2pt}}
+  }
+}
+
+\newcommand{\cvheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \small#3 & \small #4 \\
+    \end{tabular*}\vspace{-8pt}
+}
+
+\newcommand{\cvheadingstart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\cvheadingend}{\end{itemize}}
+\newcommand{\cvitemstart}{\begin{itemize}\justifying}
+\newcommand{\cvitemend}{\end{itemize}\vspace{-5pt}}
+
+\newcommand{\cvskill}[2]{
+  \textcolor{black}{\textbf{#1}}\hfill
+  \foreach \x in {1,...,5}{%
+    \space{\ifnumgreater{\x}{#2}{\color{black!80!white!20}}{\color{black}}\faSquare}}\par%
+  \vspace{-2pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\footnotesize$\bullet$}}$}
+
+\begin{document}
+
+% ============================================================
+% CONTACT INFORMATION — replace placeholders with your details.
+% Remove any line you don't want (e.g. phone, LinkedIn).
+% ============================================================
+\begin{center}
+  \textbf{\LARGE\scshape Your Name} \\
+  \vspace{1pt}\small
+  \href{mailto:you@example.com}{you@example.com}
+  $\ \diamond\ $
+  (+00) 000 000 0000
+  $\ \diamond\ $
+  \href{https://github.com/yourhandle}{GitHub}
+  $\ \diamond\ $
+  \href{https://www.linkedin.com/in/yourhandle/}{LinkedIn}
+\end{center}
+
+% ============================================================
+% The content below is PLACEHOLDER scaffolding showing the
+% expected structure. The skill regenerates every section from
+% profile.md + the target JD, so you normally won't edit this
+% by hand. Keep the section names (Summary, Education, Skills,
+% Experience, Projects, Certifications) for ATS compatibility.
+% ============================================================
+
+\section{Summary}
+\cvheadingstart
+    One or two sentences positioning who you are for this role: your strongest identity, years of experience (distinguish total vs domain-specific), and the core value you bring. Generated per JD.
+\cvheadingend
+
+\section{Education}
+\cvheadingstart
+  \cvheading
+    {University Name}{City, Country}
+    {Degree, Field}{MM/YYYY - MM/YYYY}
+        \cvitemstart
+        \cvitem{{\bfseries Relevant Coursework:}  Course A (\textbf{grade}), Course B (\textbf{grade})}
+    \cvitemend
+  \cvheading
+    {Earlier University}{City, Country}
+    {Degree, Field}{MM/YYYY - MM/YYYY}
+\cvheadingend
+
+\section{Technical Skills}
+    \cvitemstart
+        \cvitem{{\bfseries Category A:} Skill, Skill, Skill}
+        \cvitem{{\bfseries Category B:} Skill, Skill, Skill}
+        \cvitem{{\bfseries Category C:} Skill, Skill, Skill}
+    \cvitemend
+\vspace{-5 pt}
+
+\section{Experience}
+\cvheadingstart
+  \cvheading
+    {Company Name}{City, Country}
+    {Job Title}{MM/YYYY - MM/YYYY}
+  \cvitemstart
+    \cvitem{Bullet: what you did + context + measurable result. Lead with a concrete verb.}
+    \cvitem{Bullet: another achievement with a specific tool, metric, or scale.}
+  \cvitemend
+  \cvheading
+    {Earlier Company}{City, Country}
+    {Job Title}{MM/YYYY - MM/YYYY}
+  \cvitemstart
+    \cvitem{Bullet describing relevant work and outcome.}
+  \cvitemend
+\cvheadingend
+
+\section{Projects}
+\cvheadingstart
+  \cvheading
+    {Project Title}{Affiliation}
+    {Role / Context}{MM/YYYY -- MM/YYYY}
+  \cvitemstart
+    \cvitem{What the project does and your contribution, with concrete tech and scope.}
+    \cvitem{Result, benchmark, or impact, traceable to your profile.}
+  \cvitemend
+\cvheadingend
+
+\section{Certifications}
+\cvheadingstart
+\item
+\cvitemstart
+  \cvitem{Certification or Award name: score/rank, \textit{one-line context note in italics.}}
+  \cvitem{Another award, \textit{comparable-to or context note.}}
+\cvitemend
+\cvheadingend
+
+\end{document}
