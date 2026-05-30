@@ -1,6 +1,6 @@
 # apply — ATS-Optimized Resume & Cover Letter Generator
 
-A Claude Code skill that turns a job description (URL or pasted text) into a
+A skill that turns a job description (URL or pasted text) into a
 tailored, ATS-friendly LaTeX **resume** and **cover letter**, written to sound
 authentically human rather than AI-generated.
 
