@@ -11,10 +11,10 @@ feedback that it remembers for next time.
 
 ## Install
 
-Copy this folder into your skills directory so the skill resolves as `apply`:
+Clone the repo into your skills directory so the skill resolves as `apply`:
 
 ```bash
-cp -r apply-skill-shared ~/.claude/skills/apply
+git clone https://github.com/1carusalwayswa/apply ~/.claude/skills/apply
 ```
 
 (Adjust the destination to wherever your environment loads skills from.)
