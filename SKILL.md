@@ -9,6 +9,8 @@ allowed-tools: WebFetch, Read, Write, Bash, Edit, AskUserQuestion
 
 Generate a tailored LaTeX resume and cover letter from a job description, optimized for ATS screening while sounding authentically human.
 
+> **Portability:** This is a tool-agnostic skill. It needs four generic capabilities — fetch a URL, read files, write files, and run a shell — plus the ability to ask the user a question. The `allowed-tools` frontmatter lists those capabilities using Claude Code's tool names for convenience; any agent (Codex, etc.) can run the skill by mapping them to its own equivalents. Wherever this file says "your skill directory", it means the folder this `SKILL.md` lives in.
+
 > **Setup before first use:** Fill in `assets/profile.md` with your own background (work history, skills, education, awards). The shipped `profile.md` is an empty template with section scaffolding only. Optionally edit `assets/resume-template.tex` to replace the placeholder contact block with your name and links. `assets/lessons.md` starts empty and grows as you give feedback (Phase 8).
 
 ---
@@ -18,7 +20,7 @@ Generate a tailored LaTeX resume and cover letter from a job description, optimi
 Determine how to obtain the job description:
 
 - If `$ARGUMENTS` is empty or missing, ask the user to provide a job description (URL or pasted text).
-- If `$ARGUMENTS` starts with `http://` or `https://`, use WebFetch to retrieve the page content. If WebFetch fails (login wall, paywall, 403, etc.), inform the user and ask them to paste the JD text directly.
+- If `$ARGUMENTS` starts with `http://` or `https://`, fetch the page content with your web-fetch capability. If fetching fails (login wall, paywall, 403, etc.), inform the user and ask them to paste the JD text directly.
 - Otherwise, treat `$ARGUMENTS` as the raw job description text.
 
 ---
@@ -50,7 +52,7 @@ Present a short summary to the user and ask them to confirm or correct before pr
 
 ## Phase 3: Profile & Template Loading
 
-Read the following files from `${CLAUDE_SKILL_DIR}/assets/`:
+Read the following files from the `assets/` folder in your skill directory:
 
 1. **`profile.md`** — Personal information and experience inventory. If this file is missing or mostly empty, STOP and tell the user:
    > Your profile is not set up yet. Please fill in `assets/profile.md` with your information first.
@@ -382,7 +384,7 @@ After presenting the results, ask:
 
 When the user provides feedback that should persist (e.g., "never use the word X", "always put projects before education", "I prefer shorter bullets"):
 
-1. Read the current `${CLAUDE_SKILL_DIR}/assets/lessons.md`
+1. Read the current `assets/lessons.md` in your skill directory
 2. Append a new entry at the top (below the header), formatted as:
 
 ```markdown

@@ -1,8 +1,12 @@
 # apply — ATS-Optimized Resume & Cover Letter Generator
 
-A skill that turns a job description (URL or pasted text) into a
+A portable agent skill that turns a job description (URL or pasted text) into a
 tailored, ATS-friendly LaTeX **resume** and **cover letter**, written to sound
 authentically human rather than AI-generated.
+
+It is a plain `SKILL.md` specification with no dependency on any single tool. Any
+agent that can read a skill file, fetch a URL, read/write files, and run a shell
+can execute it: Claude Code, Codex, and other SKILL.md-compatible agents.
 
 It runs an 8-phase pipeline: JD analysis → strategy preview (you approve before
 anything is written) → resume + cover letter drafting → a strict HR/hiring-manager
@@ -11,13 +15,17 @@ feedback that it remembers for next time.
 
 ## Install
 
-Clone the repo into your skills directory so the skill resolves as `apply`:
+Clone the repo into your agent's skills directory so the skill resolves as `apply`:
 
 ```bash
+# Claude Code
 git clone https://github.com/1carusalwayswa/apply ~/.claude/skills/apply
+
+# Codex
+git clone https://github.com/1carusalwayswa/apply ~/.codex/skills/apply
 ```
 
-(Adjust the destination to wherever your environment loads skills from.)
+(Adjust the destination to wherever your agent loads skills from.)
 
 ## Set up before first use
 
