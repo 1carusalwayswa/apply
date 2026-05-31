@@ -27,6 +27,23 @@ git clone https://github.com/1carusalwayswa/apply ~/.codex/skills/apply
 
 (Adjust the destination to wherever your agent loads skills from.)
 
+## Prerequisites
+
+The skill produces LaTeX and compiles it to PDF, so a working **`pdflatex`** (a
+TeX distribution) is required for PDF output:
+
+```bash
+# macOS
+brew install --cask mactex-no-gui   # or: brew install basictex
+
+# Debian / Ubuntu
+sudo apt install texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
+```
+
+Without `pdflatex` the skill still writes the `.tex` files, but it cannot produce
+PDFs locally. In that case, upload the generated `.tex` files to
+[Overleaf](https://www.overleaf.com) to compile them.
+
 ## Set up before first use
 
 1. **`assets/profile.md`** — Fill in your own background (work history, skills,
