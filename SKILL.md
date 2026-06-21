@@ -2,14 +2,13 @@
 name: apply
 description: Generates ATS-optimized resume and cover letter in LaTeX from a job description URL or pasted text.
 argument-hint: <job description text or URL>
-allowed-tools: WebFetch, Read, Write, Bash, Edit, AskUserQuestion
 ---
 
 # ATS-Optimized Resume & Cover Letter Generator
 
 Generate a tailored LaTeX resume and cover letter from a job description, optimized for ATS screening while sounding authentically human.
 
-> **Portability:** This is a tool-agnostic skill. It needs four generic capabilities — fetch a URL, read files, write files, and run a shell — plus the ability to ask the user a question. The `allowed-tools` frontmatter lists those capabilities using Claude Code's tool names for convenience; any agent (Codex, etc.) can run the skill by mapping them to its own equivalents. Wherever this file says "your skill directory", it means the folder this `SKILL.md` lives in.
+> **Portability:** This is a tool-agnostic skill. It needs four generic capabilities — fetch a URL, read files, write files, and run a shell — plus the ability to ask the user a question. Any agent (Claude Code, Codex, etc.) can run the skill by mapping these to its own tool equivalents. Wherever this file says "your skill directory", it means the folder this `SKILL.md` lives in.
 
 > **Setup before first use:** Fill in `assets/profile.md` with your own background (work history, skills, education, awards). The shipped `profile.md` is an empty template with section scaffolding only. Optionally edit `assets/resume-template.tex` to replace the placeholder contact block with your name and links. `assets/lessons.md` starts empty and grows as you give feedback (Phase 8).
 
@@ -101,7 +100,7 @@ Present this as a concise bullet-point outline (in the user's working language),
 - Review ALL experience entries in `profile.md`. Select and prioritize bullets that best match the JD's required and preferred skills.
 - For each selected experience entry, rewrite bullets to naturally incorporate JD keywords — do NOT keyword-stuff.
 - Quantify achievements wherever possible: numbers, percentages, scale, team size, dollar amounts.
-- Include 4-6 bullets for the most relevant role, 2-4 for others. Omit irrelevant roles entirely if the resume is too long.
+- **Keep every experience entry from `profile.md` — never drop a whole role.** Control length by trimming bullets, not by omitting jobs: 4-6 bullets for the most relevant role, 2-4 for moderately relevant ones, and as few as 1 for the least relevant. Every position the candidate held must still appear (company, title, dates), even if it carries a single bullet.
 - **Years of experience in Summary:** Distinguish total industry experience from domain-specific experience. Do not conflate the two — e.g., write "8 years of software industry experience, including 3 years in backend development" rather than "8 years of backend experience" if the profile does not support the latter.
 - **Certifications/Awards must use flat single-level bullet lists.** Never use nested `\cvitemstart`/`\cvitemend` inside an award entry. Combine the award name and its contextual note into a single bullet using a comma (e.g., `Example Cert: 390/500 (top 1\%), \textit{national-level timed exam.}`). Do NOT use `---` as a separator.
 - Skills section should lead with JD-matched skills, then list remaining relevant ones.
