@@ -108,12 +108,22 @@ Present this as a concise bullet-point outline (in the user's working language),
 
 ### ATS Compliance Rules
 
-- Single-column layout only
+- Single-column layout for the document body (every section below the header band)
 - Standard section headers exactly as: **Experience**, **Education**, **Skills**, **Projects**
-- No tables, images, graphics, headers/footers, or text boxes
-- No columns created with tab stops or multiple spaces
+- No images, graphics, page headers/footers, or text boxes. The top header band is the only place that uses `tabular*` for layout (name left, role + contacts right, and the metric-badge row); keep the body itself strictly single-column with no tables.
+- **Badge redundancy:** every number shown in a metric badge MUST also appear in a body section (Summary / Experience / Projects / Certifications), so an ATS that ignores the header band never loses the underlying fact.
+- No columns created with tab stops or multiple spaces in the body
 - Use standard bullet characters
 - Dates in consistent format: `Mon YYYY -- Mon YYYY` or `Mon YYYY -- Present`
+
+### Header Band (top of resume)
+
+The template ships a header band: name (left, large) + role title and contacts (right), a thin rule, then a row of four metric badges. When generating, fill these per JD/profile:
+
+- **Role title** (accent color, right side): tailor to the target JD, e.g. "C++ / Embedded Software Engineer", "Senior Backend Engineer". Use the JD's role framing, not a generic label.
+- **Four metric badges** (big number + short label): pick the candidate's four strongest *quantified* proof points relevant to this role. Prefer counts, percentiles, ranks, years, scale. If the profile genuinely lacks four quantified points, delete the weakest badge cell rather than padding with a vague one. Never invent a metric.
+- **Contacts**: dot-separated, right-aligned. Edit the `\href` targets to match profile.md.
+- **Single-page guard**: the badge band adds ~3 lines. If content overflows to a second page, first tighten via `\linespread` reduction and the header `\vspace` values already in the template before trimming any content.
 
 ### Anti-AI Writing Rules
 
@@ -228,35 +238,17 @@ Review the resume and cover letter drafts from a strict HR / hiring-manager pers
 
 ### Review Dimensions
 
-1. **Hard-requirement match** — Go through the JD's must-have skills/requirements one by one; for each, assess whether the resume concretely demonstrates it.
-2. **Nice-to-have coverage** — Go through the nice-to-have skills one by one and compute the coverage ratio.
-3. **Years-of-experience match** — JD's required years vs. years evidenced in the resume; any over/under-qualification risk?
-4. **Seniority consistency** — Does the resume's summary positioning and bullet granularity match the JD's seniority level?
-5. **Keyword density** — Do the JD's core keywords appear naturally (not stuffed)? Any important keyword missing?
-6. **Red-flag check** — Look for these signals:
-   - Employment gaps (over 3 months with no explanation; note: an in-progress degree is itself a reasonable explanation for a gap and should not be listed as an unexplained-gap risk)
-   - Frequent job-hopping (average under 1 year)
-   - Mismatched degree/credentials
-   - Personal info on the resume (photo, age, marital status) — should not appear in regions governed by GDPR / anti-discrimination norms (this is an EU/Nordic default; adjust per target market)
-   - Over-self-promotional phrasing ("relentless", "no deadline missed", "best-in-class") — read as a warning sign rather than a plus in understated-tone markets
-7. **Cover-letter targeting** — Is the opening direct and clear? Does the body respond specifically to JD requirements rather than generically? Any obvious template feel?
-8. **Two-reader check** — Does the first half let HR quickly confirm the JD match? Does the second half let the hiring manager see the candidate's incremental value (concrete outcomes/impact)?
-9. **Impact-formula check** — Does each experience description in the body contain "what you did + in what context + what changed as a result"? If it's process-only with no result, flag it for improvement.
-10. **Scannability** — Can HR identify the candidate's 3 core matches in 30 seconds by skimming? If the letter is pure prose requiring word-by-word reading to extract key info, flag it.
-11. **Personal-connection proportion** — Is the personal connection to the company (events, product usage, etc.) kept within 1–2 sentences? If there's a whole paragraph of personal anecdote that doesn't serve the JD match, flag it for trimming.
-12. **Direction check** — Does the whole letter have a clear line of argument ("I fit this role because X, Y, Z")? Or is it just listing experiences / telling stories? Does every paragraph push toward the "hire this person" conclusion?
-13. **Tone check (per target market, default lagom)** — Scan for these negative signals:
-   - Hero narrative (crediting outcomes to the individual, ignoring the team)
-   - Intensity/pressure words ("relentless", "no margin for error", "driven by results at all costs")
-   - Over-confident assertions ("I will single-handedly...", "I am the best candidate...")
-   - Statements clearly at odds with the company values implied by the JD (work-life balance, inclusion, sustainability, etc.)
-   - Language that is too polished/crafted (AI feel) — it should read like a person speaking, not like an essay
-   - (Note: if the target market expects a more assertive tone, relax the hero/over-confidence judgment accordingly)
-14. **Values alignment** — If the JD mentions sustainability, inclusion, flat hierarchy, work-life balance, or similar culture keywords, check that the cover letter echoes them naturally (not excessively, but not entirely absent).
-15. **Targeting check** — Run the "company-name swap test": replace the company name in the cover letter with another company; if the letter still fully applies, targeting is insufficient. There should be at least one piece of customization grounded in this company's specific tech/product/culture.
-16. **Understatement check (per target market)** — Does the overall tone match the target market's expectation? For understated-tone markets, check whether it stays plain and non-exaggerated; if any bullet stacks adjectives to claim ability (instead of showing it with facts), rewrite it.
-17. **Language-ability check** — Only when the JD lists a language requirement AND profile.md has the relevant language ability, check that the cover letter mentions it (and states the level honestly). If the JD has no language requirement, mentioning it is not required.
-18. **Identity / career-arc clarity (mandatory for non-linear paths)** — If the candidate has a non-linear path (industry → back to school → job market, or an experienced engineer doing a summer internship, etc.), check that the cover letter opening contains one confident, non-defensive sentence framing the career arc. If missing, flag as 🔴 needs revision: the reader can't tell new grad from senior, and identity ambiguity directly sinks the application. Note: this does not conflict with the resume "not explaining gaps" — the resume stays clean and lets the timeline speak; the arc is carried by the cover letter.
+1. **Hard-requirement match** — Go through the JD's must-haves one by one; for each, assess whether the resume concretely demonstrates it.
+2. **Nice-to-have coverage** — Go through the nice-to-haves one by one and compute the coverage ratio.
+3. **Years and seniority consistency** — JD's required years vs. years evidenced in the resume; any over/under-qualification risk? Does the summary positioning and bullet granularity match the JD's seniority level?
+4. **Keyword density** — Do the JD's core keywords appear naturally (not stuffed)? Any important keyword missing?
+5. **Red-flag check** — Look for: employment gaps (over 3 months with no explanation; note: an in-progress degree is itself a reasonable explanation and must not be flagged as unexplained), frequent job-hopping (average under 1 year), mismatched degree/credentials, personal info on the resume (photo/age/marital status — should not appear under GDPR / anti-discrimination norms; adjust per target market), over-self-promotional phrasing ("relentless", "no deadline missed", "best-in-class" — read as warning, not a plus).
+6. **Targeting and direction** — Is the opening direct and clear? Does the body respond specifically to JD requirements or generically? Any template feel? Does the whole letter have a clear argument line ("I fit because X/Y/Z"), with every paragraph pushing toward "hire this person" rather than just listing experience or telling stories? Run the **company-name swap test**: replace the company name with another; if the letter still fully applies, targeting is insufficient — there should be at least one anchor grounded in the company's specific tech/product/culture.
+7. **Two-reader · scannability · impact** — Does the first half let HR quickly confirm JD match? Does the second half let the hiring manager see incremental value (concrete outcomes/impact)? Can HR identify 3 core matches within 30 seconds of skimming (pure prose requiring word-by-word reading to extract key info → flag for improvement)? Does each experience in the body contain "what you did + in what context + what changed as a result" (process only, no result → flag)?
+8. **Cover-letter content discipline** — Is the personal connection to the company (events, product usage, etc.) kept within 1–2 sentences? Any standalone anecdote paragraph that doesn't serve JD matching? Does the letter end on a weakness (should be mid-letter one-sentence pivot, then close on strength)?
+9. **Tone and values (default lagom; adjust per target market)** — Look at overall tone, not a single humility statement: is the whole letter plain, not exaggerated, not hero-narrative? Negative signals: crediting outcomes to the individual while ignoring the team, intensity/pressure words ("relentless"/"no margin for error"/"driven by results at all costs"), over-confident assertions ("I will single-handedly..."/"I am the best candidate..."), stacking adjectives to claim ability instead of showing it with facts, overly polished AI feel. If the JD mentions sustainability/inclusion/flat hierarchy/work-life balance, check that the letter echoes these naturally (not excessively, not entirely absent). (Note: if the target market expects a more assertive register, relax the hero/over-confidence judgment accordingly.)
+10. **Language-ability check** — Only when the JD lists a language requirement AND profile.md has the relevant ability, check that the cover letter mentions it naturally and states the level honestly. Do NOT use culture-tag stacking (peppering local cultural terms as "proof of interest") — that reads as a shallow stereotype. If the JD has no language requirement, language learning should not be mentioned (it reads as filler).
+11. **Identity / career-arc clarity (mandatory for non-linear paths)** — If the candidate has a non-linear path (industry → back to school → job market, or an experienced engineer doing a summer internship, etc.), check that the cover letter opening contains one confident, non-defensive sentence framing the career arc. If missing, flag as 🔴 needs revision: the reader can't tell new grad from senior, and identity ambiguity directly sinks the application. Note: this does not conflict with the resume "not explaining gaps" — the resume stays clean and lets the timeline speak; the arc is carried by the cover letter.
 
 ### Output Format (present in the user's working language)
 
@@ -319,11 +311,17 @@ command -v pdflatex
   find . -maxdepth 1 \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.toc" \
     -o -name "*.fls" -o -name "*.fdb_latexmk" -o -name "*.synctex.gz" \) -delete
   ```
-- **1-page verification (resume only):** After compilation, parse the pdflatex output for the page count (e.g., `Output written on ... (N pages, ...)`). If the resume is more than 1 page, fix the `.tex` file and recompile — apply these levers in order until it fits:
-  1. Flatten any remaining nested lists to single-level bullets
-  2. Reduce bullets for least-relevant roles (trim to 1-2 bullets each)
-  3. Tighten spacing: increase negative `\vspace` values by 1-2pt each
-  4. Recompile and re-check. Repeat until exactly 1 page. Never delete substantive content (achievements, metrics) to fit — formatting adjustments come first.
+- **1-page verification (resume only):** After compilation, parse the pdflatex output for the page count (e.g., `Output written on ... (N pages, ...)`). If the resume is more than 1 page, fix the `.tex` file and recompile — apply these levers **in order**, stopping as soon as it fits:
+  1. Reduce `\linespread` (template default is 1.18; try 1.06 first, then 1.0 if needed)
+  2. Cut content: remove or shorten the least-relevant project entry, then trim bullets for least-relevant roles (1-2 bullets each)
+  3. Flatten any remaining nested lists to single-level bullets
+  4. Recompile and re-check. Repeat until exactly 1 page. Never skip this check.
+  **⚠ Do NOT change individual `\vspace` values in `\cvheading`, `\cvitemend`, `\cvitem`, or `\titleformat`, and do NOT add `\addtolength{\textheight}` or override itemize spacing with `\setlist`. The template's spacing values form a balanced system — changing one without adjusting all others causes text overlap or disproportionate section gaps. `\linespread` is the only safe global spacing lever.**
+- **Visual inspection (MANDATORY after 1-page fit):** After confirming 1 page from the pdflatex output, visually verify the compiled PDF:
+  1. No text overlap between headings and bullet text
+  2. Spacing between sections is proportionate to spacing within sections (not drastically larger)
+  3. All content is readable with consistent rhythm
+  If any visual defect is found, adjust `\linespread` or cut more content — never patch individual `\vspace` values. Re-compile and re-inspect until clean.
 - **If not available:** Tell the user:
   > `pdflatex` not found. To compile:
   > - macOS: `brew install --cask mactex-no-gui` or `brew install basictex`
